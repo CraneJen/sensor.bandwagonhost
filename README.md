@@ -9,14 +9,14 @@
 ## 配置 
 ```yaml
 sensor:
-  - platform: homeassistant-bandwagonhost
-    veid: 搬瓦工VPS的veid         # 必须
-    api_key: 搬瓦工VPS的API_KEY   # 必须
+  - platform: bandwagonhost
+    veid: 搬瓦工VPS的veid          # 必须
+    api_key: 搬瓦工VPS的API_KEY    # 必须
     monitored_conditions:         # 可选
       - VPS_STATE                 # 可选，VPS运行状态
-      - LOAD_1M                   # 可选，VPS 1M负载
-      - LOAD_5M                   # 可选，VPS 5M负载
-      - LOAD_15M                  # 可选，VPS 15M负载
+      - VPS_LOAD_1M               # 可选，VPS 1M负载
+      - VPS_LOAD_5M               # 可选，VPS 5M负载
+      - VPS_LOAD_15M              # 可选，VPS 15M负载
       - CURRENT_BANDWIDTH_USED    # 可选，流量情况
       - RAM_USED                  # 可选，已用内存
       - DISK_USED                 # 可选，已用硬盘
