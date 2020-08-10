@@ -24,6 +24,7 @@ MONITORED_CONDITIONS = {
     'DISK_USED': ['DISK USED', '', 'mdi:disc'],
     'RAM_USED':['RAM USED', '', 'mdi:responsive'],
     'SWAP_USED':['SWAP USED', '', 'mdi:responsive'],
+    'LOAD_AVERAGE':['LOAD AVERAGE', '', 'mdi:server'],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
@@ -134,10 +135,12 @@ class BandwagonHostSensor(Entity):
                 self._state = str(round(json_obj['ve_used_disk_space_b']/1024/1024/1024,2)) + 'GB/' + str(round(json_obj['plan_disk']/1024/1024/1024,0)) + 'GB'
             elif self._condition == 'RAM_USED':
                  self._state = str(round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,0)) + 'MB/' + str(round(json_obj['plan_ram']/1024/1024,0)) + 'MB'
-            elif self._condition == 'VPS_STATE':
-                self._state = json_obj['ve_status']
             elif self._condition == 'SWAP_USED':
                 self._state = str(round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2)) + 'MB/' + str(round(json_obj['swap_total_kb']/1024,0)) + 'MB'
+            elif self._condition == 'VPS_STATE':
+                self._state = json_obj['ve_status']
+            elif self._condition == 'LOAD_AVERAGE':
+                self._state = json_obj['load_average']
             else:
                 self._state = "something wrong"
         except ConnectionError:

@@ -1,7 +1,7 @@
 {
   "domain": "bandwagonhost",
   "name": "Bandwagonhost",
-  "documentation": "https://github.com/lzybetter/homeassistant-bandwagonhost",
+  "documentation": "https://github.com/NathanDai/homeassistant-bandwagonhost",
   "requirements": ["requests"],
   "codeowners": []
 }
