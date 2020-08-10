@@ -133,7 +133,7 @@ class BandwagonHostSensor(Entity):
             elif self._condition == 'DISK_USED':
                 self._state = str(round(json_obj['ve_used_disk_space_b']/1024/1024/1024,2)) + 'GB/' + str(round(json_obj['plan_disk']/1024/1024/1024,0)) + 'GB'
             elif self._condition == 'RAM_USED':
-                self._state = str(round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024/1024,2)) + 'GB/' + str(round(json_obj['plan_ram']/1024/1024/1024,0)) + 'GB'
+                 self._state = str(round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,0)) + 'MB/' + str(round(json_obj['plan_ram']/1024/1024,0)) + 'MB'
             elif self._condition == 'VPS_STATE':
                 self._state = json_obj['ve_status']
             elif self._condition == 'SWAP_USED':
