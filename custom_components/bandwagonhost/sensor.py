@@ -24,7 +24,9 @@ MONITORED_CONDITIONS = {
     'DISK_USED': ['DISK USED', '', 'mdi:disc'],
     'RAM_USED':['RAM USED', '', 'mdi:responsive'],
     'SWAP_USED':['SWAP USED', '', 'mdi:responsive'],
-    'LOAD_AVERAGE':['LOAD AVERAGE', '', 'mdi:server'],
+    'LOAD_1M':['LOAD 1M', '', 'mdi:server'],
+    'LOAD_5M':['LOAD 5M', '', 'mdi:server'],
+    'LOAD_15M':['LOAD 15M', '', 'mdi:server'],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
@@ -139,8 +141,12 @@ class BandwagonHostSensor(Entity):
                 self._state = str(round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2)) + 'MB/' + str(round(json_obj['swap_total_kb']/1024,0)) + 'MB'
             elif self._condition == 'VPS_STATE':
                 self._state = json_obj['ve_status']
-            elif self._condition == 'LOAD_AVERAGE':
-                self._state = json_obj['load_average']
+            elif self._condition == 'LOAD_1M':
+                self._state = json_obj['load_average'].split()[0]
+            elif self._condition == 'LOAD_5M':
+                self._state = json_obj['load_average'].split()[1]
+            elif self._condition == 'LOAD_15M':
+                self._state = json_obj['load_average'].split()[2]
             else:
                 self._state = "something wrong"
         except ConnectionError:
