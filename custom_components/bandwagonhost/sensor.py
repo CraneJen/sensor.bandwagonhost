@@ -28,6 +28,10 @@ MONITORED_CONDITIONS = {
     'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit'],
     'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit'],
     'VPS_IP':['VPS IP', '', 'mdi:ip'],
+    'SSH_PORT':['SSH_PORT', '', 'mdi:ip'],
+    'HOSTNAME':['HOSTNAME', '', 'mdi:ip'],
+    'OS':['OS', '', 'mdi:ip'],
+    'NODE_LOCATION':['NODE_LOCATION', '', 'mdi:ip'],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
@@ -146,6 +150,8 @@ class BandwagonHostSensor(Entity):
                 self._state = str(round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2)) + 'MB/' + str(round(json_obj['swap_total_kb']/1024,0)) + 'MB'
             elif self._condition == 'VPS_STATE':
                 self._state = json_obj['ve_status']
+            elif self._condition == 'SSH_PORT':
+                self._state = json_obj['ssh_port']
             elif self._condition == 'VPS_LOAD_1M':
                 self._state = json_obj['load_average'].split()[0]
             elif self._condition == 'VPS_LOAD_5M':
@@ -154,6 +160,12 @@ class BandwagonHostSensor(Entity):
                 self._state = json_obj['load_average'].split()[2]
             elif self._condition == 'VPS_IP':
                 self._state = json_obj_info['ip_addresses'][0]
+            elif self._condition == 'HOSTNAME':
+                self._state = json_obj_info['hostname']
+            elif self._condition == 'OS':
+                self._state = json_obj_info['os']
+            elif self._condition == 'NODE_LOCATION':
+                self._state = json_obj_info['node_location']
             else:
                 self._state = "something wrong"
         except ConnectionError:
