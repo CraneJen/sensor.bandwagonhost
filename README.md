@@ -1,17 +1,17 @@
-# homeassistant-bandwagonhost
-用于home assistant平台的搬瓦工状态监视器,可以监视搬瓦工VPS的流量、内存和硬盘使用情况。  
+# BandwagonHost
+用于home assistant平台的搬瓦工状态监视器,可以监视搬瓦工VPS的流量、内存、硬盘、负载和IP状态。  
 
 ## 安装
-请先在<config>/custom_components/文件夹建立homeassistant-bandwagonhost文件夹
-
-再将本项目中homeassistant-bandwagonhost目录下所有文件复制到上述文件夹下
+请将本项目中custom_components下的bandwagonhost文件夹复制到<config>/custom_components/文件夹下
 
 ## 配置 
 ```yaml
+# configuration.yaml
+
 sensor:
   - platform: bandwagonhost
-    veid: 搬瓦工VPS的veid          # 必须
-    api_key: 搬瓦工VPS的API_KEY    # 必须
+    veid: BandwagonHost VPS veid          # 必须
+    api_key: BandwagonHost VPS API_KEY    # 必须
     monitored_conditions:         # 可选
       - VPS_STATE                 # 可选，VPS运行状态
       - VPS_LOAD_1M               # 可选，VPS 1M负载
@@ -21,6 +21,7 @@ sensor:
       - RAM_USED                  # 可选，已用内存
       - DISK_USED                 # 可选，已用硬盘
       - SWAP_USED                 # 可选，已用SWAP
+      - VPS_IP                    # 可选，VPS IP
 ```
 以上信息请从搬瓦工的控制页面获取。
 
