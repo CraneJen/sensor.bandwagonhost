@@ -22,6 +22,11 @@ sensor:
       - DISK_USED                 # 可选，已用硬盘
       - SWAP_USED                 # 可选，已用SWAP
       - VPS_IP                    # 可选，VPS IP
+      - SSH_PORT
+      - HOSTNAME
+      - OS
+      - NODE_LOCATION
+      - DATA_NEXT_RESET
 ```
 以上信息请从搬瓦工的控制页面获取。
 
