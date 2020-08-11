@@ -9,7 +9,7 @@ import requests
 import json
 
 from homeassistant.core import callback
-from datetime import timedelta
+from datetime import timedelta,datetime
 
 _Log=logging.getLogger(__name__)
 
@@ -168,7 +168,7 @@ class BandwagonHostSensor(Entity):
             elif self._condition == 'NODE_LOCATION':
                 self._state = json_obj_info['node_location']
             elif self._condition == 'DATA_NEXT_RESET':
-                self._state = json_obj_info['data_next_reset']
+                self._state = datetime.fromtimestamp(json_obj_info['data_next_reset']).strftime('%Y-%m-%d %H:%M:%S')
             else:
                 self._state = "something wrong"
         except ConnectionError:
