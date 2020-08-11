@@ -1,4 +1,9 @@
 # BandwagonHost
+
+[![](https://img.shields.io/github/release/NathanDai/sensor.bandwagonhost/all.svg?style=for-the-badge)](https://github.com/NathanDai/sensor.bandwagonhost/releases)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![](https://img.shields.io/github/license/NathanDai/sensor.bandwagonhost?style=for-the-badge)](LICENSE)
+
 用于home assistant平台的搬瓦工状态监视器,可以监视搬瓦工VPS的流量、内存、硬盘、负载和IP状态。  
 
 ## 安装
