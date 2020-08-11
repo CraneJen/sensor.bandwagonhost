@@ -28,11 +28,11 @@ MONITORED_CONDITIONS = {
     'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit'],
     'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit'],
     'VPS_IP':['VPS IP', '', 'mdi:ip'],
-    'SSH_PORT':['SSH PORT', '', 'mdi:ip'],
-    'HOSTNAME':['HOSTNAME', '', 'mdi:ip'],
-    'OS':['OS', '', 'mdi:ip'],
-    'NODE_LOCATION':['NODE LOCATION', '', 'mdi:ip'],
-    'DATA_NEXT_RESET':['DATA NEXT RESET', '', 'mdi:ip'],
+    'SSH_PORT':['SSH PORT', '', 'mdi:swap-vertical-bold'],
+    'HOSTNAME':['HOSTNAME', '', 'mdi:identifier'],
+    'OS':['OS', '', 'mdi:ubuntu'],
+    'NODE_LOCATION':['NODE LOCATION', '', 'mdi:map-marker'],
+    'DATA_NEXT_RESET':['DATA NEXT RESET', '', 'mdi:calendar-range'],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
