@@ -153,7 +153,7 @@ class BandwagonHostSensor(Entity):
             elif self._condition == 'VPS_LOAD_15M':
                 self._state = json_obj['load_average'].split()[2]
             elif self._condition == 'VPS_IP':
-                self._state = json_obj_info['ip_addresses']
+                self._state = json_obj_info['ip_addresses'][0]
             else:
                 self._state = "something wrong"
         except ConnectionError:
