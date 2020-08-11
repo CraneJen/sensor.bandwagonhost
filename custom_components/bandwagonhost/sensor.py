@@ -24,9 +24,10 @@ MONITORED_CONDITIONS = {
     'DISK_USED': ['DISK USED', '', 'mdi:disc'],
     'RAM_USED':['RAM USED', '', 'mdi:responsive'],
     'SWAP_USED':['SWAP USED', '', 'mdi:responsive'],
-    'VPS_LOAD_1M':['VPS LOAD 1M', '', 'mdi:server'],
-    'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:server'],
-    'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:server'],
+    'VPS_LOAD_1M':['VPS LOAD 1M', '', 'mdi:cpu-32-bit'],
+    'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit'],
+    'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit'],
+    'VPS_IP':['VPS IP', '', 'mdi:ip'],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
@@ -41,7 +42,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 
-API_URL = "https://api.64clouds.com/v1/getLiveServiceInfo?"
+API_URL_LiveServiceInfo = "https://api.64clouds.com/v1/getLiveServiceInfo?"
+API_URL_ServiceInfo = "https://api.64clouds.com/v1/getServiceInfo?"
 
 
 async def async_setup_platform(hass, config, async_add_entities,
@@ -128,8 +130,11 @@ class BandwagonHostSensor(Entity):
         This is the only method that should fetch new data for Home Assistant.
         """
         try:
-            response = requests.get(API_URL + 'veid=' + self._veid + '&api_key=' + self._api_key)
+            response = requests.get(API_URL_LiveServiceInfo + 'veid=' + self._veid + '&api_key=' + self._api_key)
             json_obj = json.loads(response.text)
+
+            response_info = requests.get(API_URL_ServiceInfo + 'veid=' + self._veid + '&api_key=' + self._api_key)
+            json_obj_info = json.loads(response_info.text)
 
             if self._condition == 'CURRENT_BANDWIDTH_USED':
                 self._state = str(round(json_obj['data_counter']/1024/1024/1024,2)) + 'GB/' + str(round(json_obj['plan_monthly_data']/1024/1024/1024,0)) + 'GB'
@@ -147,6 +152,8 @@ class BandwagonHostSensor(Entity):
                 self._state = json_obj['load_average'].split()[1]
             elif self._condition == 'VPS_LOAD_15M':
                 self._state = json_obj['load_average'].split()[2]
+            elif self._condition == 'VPS_IP':
+                self._state = json_obj_info['ip_addresses']
             else:
                 self._state = "something wrong"
         except ConnectionError:
