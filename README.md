@@ -10,23 +10,23 @@
 
 sensor:
   - platform: bandwagonhost
-    veid: BandwagonHost VPS veid          # 必须
-    api_key: BandwagonHost VPS API_KEY    # 必须
+    veid: veid                    # 必须
+    api_key: API_KEY              # 必须
     monitored_conditions:         # 可选
-      - VPS_STATE                 # 可选，VPS运行状态
-      - VPS_LOAD_1M               # 可选，VPS 1M负载
-      - VPS_LOAD_5M               # 可选，VPS 5M负载
-      - VPS_LOAD_15M              # 可选，VPS 15M负载
-      - CURRENT_BANDWIDTH_USED    # 可选，流量情况
-      - RAM_USED                  # 可选，已用内存
-      - DISK_USED                 # 可选，已用硬盘
-      - SWAP_USED                 # 可选，已用SWAP
-      - VPS_IP                    # 可选，VPS IP
-      - SSH_PORT
-      - HOSTNAME
-      - OS
-      - NODE_LOCATION
-      - DATA_NEXT_RESET
+      - VPS_STATE                 # 可选，VPS运行状态 Starting, Running or Stopped
+      - VPS_LOAD_1M               # 可选，VPS LOAD 1M
+      - VPS_LOAD_5M               # 可选，VPS LOAD 5M
+      - VPS_LOAD_15M              # 可选，VPS LOAD 15M
+      - CURRENT_BANDWIDTH_USED    # 可选，BANDWIDTH 使用量
+      - RAM_USED                  # 可选，RAM 使用量
+      - DISK_USED                 # 可选，DISK 使用量
+      - SWAP_USED                 # 可选，SWAP 使用量
+      - VPS_IP                    # 可选，IPv4 and IPv6 addresses assigned to VPS
+      - SSH_PORT                  # 可选，SSH port of the VPS
+      - HOSTNAME                  # 可选，Hostname of the VPS
+      - OS                        # 可选，Operating system
+      - NODE_LOCATION             # 可选，Physical location (country, state)
+      - DATA_NEXT_RESET           # 可选，Date and time of transfer counter reset (Local Time)
 ```
 以上信息请从搬瓦工的控制页面获取。
 
