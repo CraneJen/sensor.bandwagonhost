@@ -1,6 +1,5 @@
 {
     "name": "Bandwagonhost",
-    "country": "CN",
-    "render_readme": false,
+    "render_readme": true,
     "domains": ["sensor"]
   }
