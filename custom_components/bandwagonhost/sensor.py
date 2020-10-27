@@ -147,21 +147,21 @@ class BandwagonHostSensor(Entity):
             json_obj_info = json.loads(response_info.text)
 
             if self._condition == 'CURRENT_BANDWIDTH_USED':
-                self._state = str(round(json_obj['data_counter']/1024/1024/1024,2))
+                self._state = str(round(json_obj['data_counter']/1024/1024/1024,2)) + 'GB'
             elif self._condition == 'CURRENT_BANDWIDTH_ALL':
-                self._state = str(round(json_obj['plan_monthly_data']/1024/1024/1024,0))
+                self._state = str(round(json_obj['plan_monthly_data']/1024/1024/1024,0)) + 'GB'
             elif self._condition == 'DISK_USED':
-                self._state = str(round(json_obj['ve_used_disk_space_b']/1024/1024/1024,2))'
+                self._state = str(round(json_obj['ve_used_disk_space_b']/1024/1024/1024,2)) + 'GB'
             elif self._condition == 'DISK_ALL':
-                self._state = str(round(json_obj['plan_disk']/1024/1024/1024,0))
+                self._state = str(round(json_obj['plan_disk']/1024/1024/1024,0)) + 'GB'
             elif self._condition == 'RAM_USED':
-                 self._state = str(round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,0))
+                 self._state = str(round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,0)) + 'MB'
             elif self._condition == 'RAM_ALL':
-                 self._state = str(round(json_obj['plan_ram']/1024/1024,0))
+                 self._state = str(round(json_obj['plan_ram']/1024/1024,0)) + 'MB'
             elif self._condition == 'SWAP_USED':
-                self._state = str(round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2))
+                self._state = str(round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2)) + 'MB' 
             elif self._condition == 'SWAP_ALL':
-                self._state = str(round(json_obj['swap_total_kb']/1024,0))
+                self._state = str(round(json_obj['swap_total_kb']/1024,0)) + 'MB'
             elif self._condition == 'VPS_STATE':
                 self._state = json_obj['ve_status']
             elif self._condition == 'SSH_PORT':
