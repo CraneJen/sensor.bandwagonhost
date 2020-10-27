@@ -7,8 +7,16 @@ from homeassistant.const import (
     CONF_NAME, 
     CONF_SCAN_INTERVAL, 
     EVENT_HOMEASSISTANT_START,
+    CONF_RESOURCES,
+    CONF_TYPE,
     DATA_GIBIBYTES,
-    DATA_MEBIBYTES
+    DATA_MEBIBYTES,
+    DATA_RATE_MEGABYTES_PER_SECOND,
+    PERCENTAGE,
+    STATE_OFF,
+    STATE_ON,
+    TEMP_CELSIUS,
+    
 )
 import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA
