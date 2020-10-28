@@ -35,7 +35,7 @@ CONF_API_KEY = 'api_key'
 
 # Schema: [name, unit of measurement, icon, device class, flag if mandatory arg]
 MONITORED_CONDITIONS = {
-    'VPS_STATE' : ['Vps State','','mdi:cloud-search'],
+    'VPS_STATE' : ['Vps State','','mdi:cloud-search', None, False],
     'CURRENT_BANDWIDTH_USED': ['Current Bandwidth Used', DATA_GIBIBYTES,'mdi:cloud-tags', None, False],
     'CURRENT_BANDWIDTH_ALL': ['Current Bandwidth All', DATA_GIBIBYTES,'mdi:cloud-tags', None, False],
     'DISK_USED': ['DISK USED', DATA_GIBIBYTES, 'mdi:disc', None, False],
@@ -44,15 +44,15 @@ MONITORED_CONDITIONS = {
     'RAM_All':['RAM All', DATA_MEBIBYTES, 'mdi:responsive', None, False],
     'SWAP_USED':['SWAP USED', DATA_MEBIBYTES, 'mdi:responsive', None, False],
     'SWAP_All':['SWAP All', DATA_MEBIBYTES, 'mdi:responsive', None, False],
-    'VPS_LOAD_1M':['VPS LOAD 1M', '', 'mdi:cpu-32-bit'],
-    'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit'],
-    'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit'],
-    'VPS_IP':['VPS IP', '', 'mdi:ip'],
-    'SSH_PORT':['SSH PORT', '', 'mdi:swap-vertical-bold'],
-    'HOSTNAME':['HOSTNAME', '', 'mdi:identifier'],
-    'OS':['OS', '', 'mdi:ubuntu'],
-    'NODE_LOCATION':['NODE LOCATION', '', 'mdi:map-marker'],
-    'DATA_NEXT_RESET':['DATA NEXT RESET', '', 'mdi:calendar-range'],
+    'VPS_LOAD_1M':['VPS LOAD 1M', '', 'mdi:cpu-32-bit', None, False],
+    'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit', None, False],
+    'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit', None, False],
+    'VPS_IP':['VPS IP', '', 'mdi:ip', None, False],
+    'SSH_PORT':['SSH PORT', '', 'mdi:swap-vertical-bold', None, False],
+    'HOSTNAME':['HOSTNAME', '', 'mdi:identifier', None, False],
+    'OS':['OS', '', 'mdi:ubuntu', None, False],
+    'NODE_LOCATION':['NODE LOCATION', '', 'mdi:map-marker', None, False],
+    'DATA_NEXT_RESET':['DATA NEXT RESET', '', 'mdi:calendar-range', None, False],
 }
 
 SCAN_INTERVAL = timedelta(seconds=1200)
