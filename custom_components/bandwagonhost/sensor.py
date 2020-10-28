@@ -16,7 +16,6 @@ from homeassistant.const import (
     STATE_OFF,
     STATE_ON,
     TEMP_CELSIUS,
-    
 )
 import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -106,7 +105,7 @@ class BandwagonHostSensor(Entity):
         condition_info = MONITORED_CONDITIONS[condition]
 
         self._condition_name = condition_info[0]
-        self._units = condition_info[1]
+        self._unit_of_measurement = condition_info[1]
         self._icon = condition_info[2]
 
 
@@ -147,7 +146,8 @@ class BandwagonHostSensor(Entity):
 
     @property
     def unit_of_measurement(self):
-        self._units
+        """Return the unit of measurement of this entity, if any."""
+        return self._unit_of_measurement
 
     def update(self):
         """Fetch new state data for the sensor.
