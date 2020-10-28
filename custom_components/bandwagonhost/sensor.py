@@ -36,13 +36,14 @@ CONF_API_KEY = 'api_key'
 MONITORED_CONDITIONS = {
     'VPS_STATE' : ['Vps State','','mdi:cloud-search', None, False],
     'CURRENT_BANDWIDTH_USED': ['Current Bandwidth Used', DATA_GIBIBYTES,'mdi:cloud-tags', None, False],
+    'CURRENT_BANDWIDTH_FREE': ['Current Bandwidth Free', DATA_GIBIBYTES,'mdi:cloud-tags', None, False],
     'CURRENT_BANDWIDTH_ALL': ['Current Bandwidth All', DATA_GIBIBYTES,'mdi:cloud-tags', None, False],
     'DISK_USED': ['DISK USED', DATA_GIBIBYTES, 'mdi:disc', None, False],
     'DISK_ALL': ['DISK All', DATA_GIBIBYTES, 'mdi:disc', None, False],
     'RAM_USED':['RAM USED', DATA_MEBIBYTES, 'mdi:responsive', None, False],
-    'RAM_All':['RAM All', DATA_MEBIBYTES, 'mdi:responsive', None, False],
+    'RAM_ALL':['RAM ALL', DATA_MEBIBYTES, 'mdi:responsive', None, False],
     'SWAP_USED':['SWAP USED', DATA_MEBIBYTES, 'mdi:responsive', None, False],
-    'SWAP_All':['SWAP All', DATA_MEBIBYTES, 'mdi:responsive', None, False],
+    'SWAP_ALL':['SWAP ALL', DATA_MEBIBYTES, 'mdi:responsive', None, False],
     'VPS_LOAD_1M':['VPS LOAD 1M', '', 'mdi:cpu-32-bit', None, False],
     'VPS_LOAD_5M':['VPS LOAD 5M', '', 'mdi:cpu-32-bit', None, False],
     'VPS_LOAD_15M':['VPS LOAD 15M', '', 'mdi:cpu-32-bit', None, False],
@@ -163,20 +164,22 @@ class BandwagonHostSensor(Entity):
 
             if self._condition == 'CURRENT_BANDWIDTH_USED':
                 self._state = round(json_obj['data_counter']/1024/1024/1024,2)
+            elif self._condition == 'CURRENT_BANDWIDTH_FREE':
+                self._state = round((json_obj['plan_monthly_data']-json_obj['data_counter'])/1024/1024/1024,2)
             elif self._condition == 'CURRENT_BANDWIDTH_ALL':
-                self._state = round(json_obj['plan_monthly_data']/1024/1024/1024,0)
+                self._state = round(json_obj['plan_monthly_data']/1024/1024/1024,2)
             elif self._condition == 'DISK_USED':
                 self._state = round(json_obj['ve_used_disk_space_b']/1024/1024/1024,2)
             elif self._condition == 'DISK_ALL':
-                self._state = round(json_obj['plan_disk']/1024/1024/1024,0)
+                self._state = round(json_obj['plan_disk']/1024/1024/1024,2)
             elif self._condition == 'RAM_USED':
-                 self._state = round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,0)
+                 self._state = round((json_obj['plan_ram'] - json_obj['mem_available_kb']*1024)/1024/1024,2)
             elif self._condition == 'RAM_ALL':
-                 self._state = round(json_obj['plan_ram']/1024/1024,0)
+                self._state = round(json_obj['plan_ram']/1024/1024,2)
             elif self._condition == 'SWAP_USED':
                 self._state = round((json_obj['swap_total_kb'] - json_obj['swap_available_kb'])/1024,2) 
             elif self._condition == 'SWAP_ALL':
-                self._state = round(json_obj['swap_total_kb']/1024,0)
+                self._state = round(json_obj['swap_total_kb']/1024,2)
             elif self._condition == 'VPS_STATE':
                 self._state = json_obj['ve_status']
             elif self._condition == 'SSH_PORT':
