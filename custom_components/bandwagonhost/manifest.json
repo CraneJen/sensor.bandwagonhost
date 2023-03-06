@@ -3,5 +3,6 @@
   "name": "Bandwagonhost",
   "documentation": "https://github.com/NathanDai/homeassistant-bandwagonhost",
   "requirements": ["requests"],
-  "codeowners": []
+  "codeowners": [],
+  "version": "v1.16"
 }
