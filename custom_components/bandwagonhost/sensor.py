@@ -1,5 +1,6 @@
 import logging
 
+from homeassistant.const import UnitOfInformation, UnitOfDataRate
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (
@@ -9,13 +10,9 @@ from homeassistant.const import (
     EVENT_HOMEASSISTANT_START,
     CONF_RESOURCES,
     CONF_TYPE,
-    DATA_GIBIBYTES,
-    DATA_MEBIBYTES,
-    DATA_RATE_MEGABYTES_PER_SECOND,
     PERCENTAGE,
     STATE_OFF,
     STATE_ON,
-    TEMP_CELSIUS,
 )
 import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -31,6 +28,9 @@ REQUIREMENTS = ['requests']
 DEFAULT_NAME = '搬瓦工状态'
 CONF_VEID = 'veid'
 CONF_API_KEY = 'api_key'
+
+DATA_GIBIBYTES = UnitOfInformation.GIBIBYTES
+DATA_MEBIBYTES = UnitOfInformation.MEBIBYTES
 
 # Schema: [name, unit of measurement, icon, device class, flag if mandatory arg]
 MONITORED_CONDITIONS = {
